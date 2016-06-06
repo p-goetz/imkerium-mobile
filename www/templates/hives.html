@@ -1,0 +1,34 @@
+<ion-view hide-back-button="true" can-swipe-back="false">
+  <ion-nav-buttons side="right">
+    <button class="button" ng-click="openModal()">
+      <i class="icon ion-plus"></i> Volk
+    </button>
+  </ion-nav-buttons>
+  <ion-content class="padding">
+    <h1>{{beekeeper}}</h1>
+    <ion-list>
+      <ion-item ng-repeat="site in sites">
+        <h2>{{site.name}}</h2>
+
+        <div class="list card" ng-repeat="hive in site.hives">
+          <a class="item item-divider" href="#/details/{{hive._id}}">
+            Volk {{hive.name}}
+          </a>
+          <div ng-show="hive.logbook.length > 0">
+            <div class="item">
+              Nachschau: {{hive.logbook[hive.logbook.length-1].date | date : 'dd.MM.yyyy'}}
+            </div>
+            <div class="item">
+              Aktion: {{hive.logbook[hive.logbook.length-1].notes}}
+            </div>
+          </div>
+          <div ng-hide="hive.logbook.length > 0">
+            <div class="item">
+              Noch keine Nachschau erfasst.
+            </div>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

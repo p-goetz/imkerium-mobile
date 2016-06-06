@@ -1,0 +1,21 @@
+<ion-view>
+  <ion-nav-buttons side="right">
+    <button class="button" ng-click="openModal()">
+      <i class="icon ion-plus"></i> Eintrag
+    </button>
+  </ion-nav-buttons>
+  <ion-content class="padding">
+    <h1>{{site_name}}: {{hive_name}}</h1>
+
+    <div class="list card" ng-repeat="log in logbook | orderBy: '-date'">
+      <a class="item item-divider">{{log.date | date : 'dd.MM.yyyy'}}</a>
+      <div class="item">{{log.notes}}</div>
+      <div class="item">
+        Waben (Gesamt/Brut/Futter): {{log.combs_total}} / {{log.combs_brood}} / {{log.combs_food}}
+      </div>
+      <div class="item">
+        Königin: <span class="icon ion-checkmark" ng-show="log.queen_present"></span><span class="icon ion-close" ng-hide="log.queen_present"></span>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
